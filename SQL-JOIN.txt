@@ -1,0 +1,245 @@
+--create database ft1
+--go
+
+--use ft1
+--go
+
+--DROP TABLE IF EXISTS agama;
+--CREATE TABLE agama  (
+--  KODE_AGAMA char(5),
+--  DESKRIPSI varchar(20)
+--);
+
+--INSERT INTO agama VALUES ('A001', 'Islam');
+--INSERT INTO agama VALUES ('A002', 'Kristen');
+--INSERT INTO agama VALUES ('A003', 'Katolik');
+--INSERT INTO agama VALUES ('A004', 'Hindu');
+--INSERT INTO agama VALUES ('A005', 'Budha');
+
+--DROP TABLE IF EXISTS dosen;
+--CREATE TABLE dosen  (
+--  KODE_DOSEN char(5),
+--  NAMA_DOSEN varchar(100),
+--  KODE_JURUSAN char(5),
+--  KODE_TYPE_DOSEN char(5)
+--);
+
+--INSERT INTO dosen VALUES ('D001', 'Prof. Dr. Retno Wahyuningsih', 'J001', 'T002');
+--INSERT INTO dosen VALUES ('D002', 'Prof. Roy M. Soetikno', 'J002', 'T001');
+--INSERT INTO dosen VALUES ('D003', 'Prof. Hendri A. Verbrugh', 'J003', 'T002');
+--INSERT INTO dosen VALUES ('D004', 'Prof. Risma Suparwata', 'J004', 'T002');
+--INSERT INTO dosen VALUES ('D005', 'Prof. Amir Sjarifuddin Madjid, MM, MBA', 'J005', 'T001');
+
+--DROP TABLE IF EXISTS jurusan;
+--CREATE TABLE jurusan  (
+--  KODE_JURUSAN char(5),
+--  NAMA_JURUSAN varchar(50),
+--  STATUS_JURUSAN varchar(100)
+--);
+
+--INSERT INTO jurusan VALUES ('J001', 'Teknik Informatika', 'Aktif');
+--INSERT INTO jurusan VALUES ('J002', 'Manajemen Informatika', 'Aktif');
+--INSERT INTO jurusan VALUES ('J003', 'Sistem Informasi', 'Non Aktif');
+--INSERT INTO jurusan VALUES ('J004', 'Sistem Komputer', 'Aktif');
+--INSERT INTO jurusan VALUES ('J005', 'Komputer Science', 'Non Aktif');
+
+--DROP TABLE IF EXISTS mahasiswa;
+--CREATE TABLE mahasiswa  (
+--  KODE_MAHASISWA char(5),
+--  NAMA_MAHASISWA varchar(20),
+--  ALAMAT varchar(200),
+--  KODE_AGAMA char(5),
+--  KODE_JURUSAN char(5)
+--);
+
+--INSERT INTO mahasiswa VALUES ('M001', 'Budi Gunawan', 'Jl. Mawar No 3 RT 05 Cicalengka, Bandung', 'A001', 'J001');
+--INSERT INTO mahasiswa VALUES ('M002', 'Rinto Rahardjo', 'Jl. Kebagusan No. 33 RT04 RW06 Bandung', 'A002', 'J002');
+--INSERT INTO mahasiswa VALUES ('M003', 'Asep Saepudin', 'Jl. Sumatera No.12 RT02 RW01, Ciamis', 'A001', 'J003');
+--INSERT INTO mahasiswa VALUES ('M004', 'M. Hafif Isbullah', 'Jl. Jawa No 01 RT01 RW01, Jakarta Pusat', 'A001', 'J001');
+--INSERT INTO mahasiswa VALUES ('M005', 'Cahyono', 'JL. Niagara No. 54 RT01 RW09, Surabaya', 'A003', 'J002');
+
+--DROP TABLE IF EXISTS nilai;
+--CREATE TABLE nilai  (
+--  KODE_NILAI char(5),
+--  KODE_MAHASISWA char(5),
+--  KODE_UJIAN char(5),
+--  NILAI decimal(10, 0)
+--);
+
+--INSERT INTO nilai VALUES ('N001', 'M004', 'U001', 90);
+--INSERT INTO nilai VALUES ('N002', 'M001', 'U001', 80);
+--INSERT INTO nilai VALUES ('N003', 'M002', 'U003', 85);
+--INSERT INTO nilai VALUES ('N004', 'M004', 'U002', 95);
+--INSERT INTO nilai VALUES ('N005', 'M005', 'U005', 70);
+
+--DROP TABLE IF EXISTS type_dosen;
+--CREATE TABLE type_dosen  (
+--  KODE_TYPE_DOSEN char(5),
+--  DESKRIPSI varchar(20)
+--);
+
+--INSERT INTO type_dosen VALUES ('T001', 'Tetap');
+--INSERT INTO type_dosen VALUES ('T002', 'Honoroer');
+--INSERT INTO type_dosen VALUES ('T003', 'Expertise');
+
+--DROP TABLE IF EXISTS ujian;
+--CREATE TABLE ujian  (
+--  KODE_UJIAN char(5),
+--  NAMA_UJIAN varchar(50),
+--  STATUS_UJIAN varchar(100)
+--);
+
+--INSERT INTO ujian VALUES ('U001', 'Algoritma', 'Aktif');
+--INSERT INTO ujian VALUES ('U002', 'Aljabar', 'Aktif');
+--INSERT INTO ujian VALUES ('U003', 'Statistika', 'Non Aktif');
+--INSERT INTO ujian VALUES ('U004', 'Etika Profesi', 'Non Aktif');
+--INSERT INTO ujian VALUES ('U005', 'Bahasa Inggris', 'Aktif');
+
+
+
+-- JAWABAN
+-- (1) Buatlah data Matakuliah(kode matakuliah, nama matakuliah & kode dosen) sesuai dengan data kuliah,
+-- lalu tentukan hubungan antara data ujian dengan data kuliah. Kemudian buat quaery select untuk menampilkan data ujian
+-- beserta matakuliah
+
+--CREATE TABLE Mata_Kuliah (
+--  KODE_MataKuliah char(5),
+--  Nama_MataKuliah varchar(20),
+--  KODE_Dosen char(5)
+--);
+
+--INSERT INTO Mata_Kuliah VALUES ('MK001', 'Matematika Dasar', 'D001');
+--INSERT INTO Mata_kuliah VALUES ('MK002', 'Komputasi', 'D003');
+--INSERT INTO Mata_kuliah VALUES ('MK003', 'Matematika Terapan', 'D002');
+--INSERT INTO Mata_kuliah VALUES ('MK004', 'Manjemen Bisnis', 'D004');
+--INSERT INTO Mata_kuliah VALUES ('MK005', 'Metode Numerik', 'D005');
+ 
+ --SELECT * FROM Mata_Kuliah INNER JOIN Ujian ON Mata_Kuliah.Kode_MataKuliah=Ujian.Kode_Matakuliah
+
+--(2) Tampilkan nilai dan nama ujian dari mata kuliah yang diajarkan dosen honorer
+ --SELECT
+
+ --SELECT nilai.nilai, ujian.Nama_Ujian 
+ --FROM nilai 
+ --join ujian 
+ --on nilai.kode_ujian=ujian.kode_ujian 
+ --join Mata_Kuliah 
+ --on ujian.Kode_Matakuliah=Mata_Kuliah.Kode_Matakuliah
+ --join dosen 
+ --on dosen.Kode_Dosen=Mata_Kuliah.Kode_Dosen
+ --join Type_dosen 
+ --on type_dosen.kode_type_dosen=dosen.kode_type_dosen
+ --WHERE nilai >= '80'
+
+-- (3) Tampilkan Nama ujian dan nilai rata-rata masing2 ujian
+
+	--SELECT nama_ujian,
+	--		total.rata_rata
+	--FROM (SELECT kode_ujian, sum (nilai)/count(nilai) as rata_rata FROM nilai GROUP by kode_ujian) as total
+	--INNER JOIN ujian on UJian.Kode_ujian=total.Kode_Ujian
+
+-- (4) tampilkan nama dan total nilai ujian dari masing-masing ujian yang aktif. urutan dari terendah
+
+	--SELECT 
+	--	Nama_Ujian
+	--	, total
+	--FROM 
+	--	(
+	--	SELECT Kode_Ujian, sum (nilai)as total FROM nilai GROUP BY Kode_Ujian
+	--	) as totalmasing
+	--INNER JOIN ujian 
+	--ON ujian.Kode_Ujian=totalmasing.Kode_Ujian
+	--ORDER BY total ASC
+
+-- (5) tambahkan 2 record data pada tabel nilai yang nilainya 40 & 65
+	--INSERT INTO nilai
+	--VALUES ('N006', 'M002', 'U001', 40),
+	--('N007', 'M003', 'U001', 65)
+
+	--SELECT 
+	--	nama_mahasiswa
+	--	, nama_jurusan
+	--	, nama_ujian
+	--	, nilai
+	--FROM 
+	--	mahasiswa
+	--JOIN
+	--	jurusan
+	--ON mahasiswa.Kode_Jurusan=jurusan.Kode_jurusan
+	--JOIN
+	--	Nilai
+	--ON
+	--	nilai.Kode_mahasiswa=Mahasiswa.Kode_mahasiswa
+	--JOIN
+	--	ujian
+	--ON ujian.Kode_Ujian=nilai.Kode_ujian
+
+-- (6) buatlah tabel kota dan provinsi
+
+
+--	CREATE TABLE kota  (
+--  KODE_kota char(5),
+--  NAMA_kota varchar(100),
+--  KODE_provinsi char(5)
+--);
+
+--INSERT INTO kota VALUES ('K001', 'Bandung', 'P001');
+--INSERT INTO kota VALUES ('K002', 'Tangerang', 'P001');
+--INSERT INTO kota VALUES ('K003', 'Yogya', 'P002');
+--INSERT INTO kota VALUES ('K004', 'Klaten', 'P003');
+
+--	CREATE TABLE provinsi  (
+--  KODE_provinsi char(5),
+--  NAMA_provinsi varchar(100),
+--);
+
+--INSERT INTO provinsi VALUES ('P001', 'Jawa barat');
+--INSERT INTO provinsi VALUES ('P002', 'DI Yogyakarta');
+--INSERT INTO provinsi VALUES ('P003', 'Jawa Tengah');
+
+--(7) buat perintah untuk menampilkan data kode_mahasiswa, nama_mahasiswa, nama_jurusan, nama_dosen, kode_matakuliah,
+-- nama_matakuliah, nilai
+
+--SELECT mahasiswa.kode_mahasiswa
+--	,nama_mahasiswa
+--	, nama_jurusan
+--	, nama_dosen
+--	, kode_matakuliah
+--	, nama_matakuliah
+--	, nilai
+--FROM
+--	Mahasiswa
+--JOIN 
+--	jurusan on mahasiswa.kode_jurusan=jurusan.kode_jurusan
+--join
+--	dosen on dosen.kode_jurusan=mahasiswa.kode_jurusan
+--join 
+--	Mata_Kuliah on dosen.KODE_DOSEN=Mata_Kuliah.KODE_Dosen
+--join
+--	nilai on mahasiswa.KODE_MAHASISWA=nilai.KODE_MAHASISWA
+--ORDER BY KODE_MAHASISWA ASC
+	
+--(8) Buatkan query  untuk create view menggunakan data no 7
+		
+--	CREATE VIEW Nomer7 as
+--	SELECT mahasiswa.kode_mahasiswa
+--	,nama_mahasiswa
+--	, nama_jurusan
+--	, nama_dosen
+--	, kode_matakuliah
+--	, nama_matakuliah
+--	, nilai
+--FROM
+--	Mahasiswa
+--JOIN 
+--	jurusan on mahasiswa.kode_jurusan=jurusan.kode_jurusan
+--join
+--	dosen on dosen.kode_jurusan=mahasiswa.kode_jurusan
+--join 
+--	Mata_Kuliah on dosen.KODE_DOSEN=Mata_Kuliah.KODE_Dosen
+--join
+--	nilai on mahasiswa.KODE_MAHASISWA=nilai.KODE_MAHASISWA
+
+
+-- (9) Tambahkan 1 field kota pada table Mahasiswa dan isi dengan kode sesuai dengan tabel kota
+-- (10)
